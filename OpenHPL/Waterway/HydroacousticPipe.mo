@@ -33,7 +33,7 @@ model HydroacousticPipe
     Dialog(group = "Initialization"));
   //
   parameter SI.VelocityOfSound a = 1000.0 "Speed of sound";
-  parameter Integer N=10 "Number of intermediate pipe segments";
+  parameter Integer N=25 "Number of intermediate pipe segments";
   SI.VolumeFlowRate Qm "Average volume flow rate";
   Real h[N + 1] "Local dynamic head";
   SI.VolumeFlowRate Vdot[N] "Flow rate for each section";
@@ -87,5 +87,5 @@ equation
   end for;
 
 annotation(
-    Documentation(info = "<html><head></head><body><p>Hydroacoustic pipe flow model based on the electric analog (transmission line method)- see [Nicolet, 2007].</p></body></html>"));
+    Documentation(info = "<html><head></head><body><p>Hydroacoustic pipe flow model based on the electric analog (transmission line method)- see Nicolet [1]. The current model only applies for pipes with constant area. The speed of sound can be specified for each pipe element.</p><p><br></p><hr><table><tbody><tr><td>[1]</td><td><a href=\"https://www.hdynamics.ch/Profile/Publications/pdf/EPFL_TH3751.pdf\">NICOLET, C.,Hydroacoustic Modelling and Numerical Simulation of Unsteady Operation of Hydroelectric Systems, PhD Thesis, EPFL n°3751, Lausanne, 2007. </a></td></tr></tbody></table></body></html>"));
 end HydroacousticPipe;
