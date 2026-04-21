@@ -103,23 +103,23 @@ end HydroacousticPipeTest_02;
     OpenHPL.Waterway.HydroacousticPipe pipe1(H = 0, L = Ln, D = Dn, SteadyState = true, ignoreFriction = true) annotation(
       Placement(transformation(origin = {-8, 20}, extent = {{-10, -10}, {10, 10}})));
     constant Modelica.Units.SI.Area An = 0.1;
-  OpenHPL.Waterway.Reservoir Ups2(constantLevel = true, h_0 = 100) annotation(
+    OpenHPL.Waterway.Reservoir Ups2(constantLevel = true, h_0 = 100) annotation(
       Placement(transformation(origin = {-60, -24}, extent = {{-10, -10}, {10, 10}})));
-  OpenHPL.Waterway.Reservoir Dws2(constantLevel = true, h_0 = 0) annotation(
+    OpenHPL.Waterway.Reservoir Dws2(constantLevel = true, h_0 = 0) annotation(
       Placement(transformation(origin = {66, -46}, extent = {{10, -10}, {-10, 10}})));
-  OpenHPL.Waterway.Valve valve2(H_n = 100, ValveCapacity = false, Vdot_n = 1) annotation(
+    OpenHPL.Waterway.Valve valve2(H_n = 100, ValveCapacity = false, Vdot_n = 1) annotation(
       Placement(transformation(origin = {38, -46}, extent = {{-10, -10}, {10, 10}})));
-  OpenHPL.Waterway.HydroacousticPipe pipe2(D = Dn, H = 0, L = Ln, SteadyState = true) annotation(
+    OpenHPL.Waterway.HydroacousticPipe pipe2(D = Dn, H = 0, L = Ln, SteadyState = true) annotation(
       Placement(transformation(origin = {-14, -36}, extent = {{-10, -10}, {10, 10}})));
-  OpenHPL.Waterway.Reservoir Ups3(constantLevel = true, h_0 = 100) annotation(
+    OpenHPL.Waterway.Reservoir Ups3(constantLevel = true, h_0 = 100) annotation(
       Placement(transformation(origin = {-62, -72}, extent = {{-10, -10}, {10, 10}})));
-  OpenHPL.Waterway.Reservoir Dws3(constantLevel = true, h_0 = 0) annotation(
+    OpenHPL.Waterway.Reservoir Dws3(constantLevel = true, h_0 = 0) annotation(
       Placement(transformation(origin = {64, -94}, extent = {{10, -10}, {-10, 10}})));
-  OpenHPL.Waterway.Valve valve3(H_n = 100, ValveCapacity = false, Vdot_n = 1) annotation(
+    OpenHPL.Waterway.Valve valve3(H_n = 100, ValveCapacity = false, Vdot_n = 1) annotation(
       Placement(transformation(origin = {36, -94}, extent = {{-10, -10}, {10, 10}})));
-  OpenHPL.Waterway.HydroacousticPipe pipe3(D = Dn*2, H = 0, L = Ln, SteadyState = true) annotation(
+    OpenHPL.Waterway.HydroacousticPipe pipe3(D = Dn*2, H = 0, L = Ln, SteadyState = true) annotation(
       Placement(transformation(origin = {-16, -84}, extent = {{-10, -10}, {10, 10}})));
- Modelica.Blocks.Sources.Pulse pulse(amplitude = 1, width = 5, period = 20, nperiod = 3, offset = 0, startTime = 2)  annotation(
+    Modelica.Blocks.Sources.Pulse pulse(amplitude = 1, width = 5, period = 20, nperiod = 3, offset = 0, startTime = 2)  annotation(
       Placement(transformation(origin = {82, 76}, extent = {{10, -10}, {-10, 10}}, rotation = -0)));
   protected
 
@@ -149,6 +149,13 @@ equation
  connect(pulse.y, valve3.opening) annotation(
       Line(points = {{72, 76}, {18, 76}, {18, -72}, {36, -72}, {36, -86}}, color = {0, 0, 127}));
   annotation(
-      experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-06, Interval = 0.002));
+      experiment(StartTime = 0, StopTime = 150, Tolerance = 1e-06, Interval = 0.002));
 end HydroacousticPipeTest_03;
+
+  model HydroacousticPipeTest_04
+    extends OpenHPLTest.HydroacousticPipeTest.HydroacousticPipeTest_03(pulse(width = 10));
+  equation
+ annotation(
+       experiment(StartTime = 0, StopTime = 150, Tolerance = 1e-06, Interval = 0.002));
+  end HydroacousticPipeTest_04;
 end HydroacousticPipeTest;
